@@ -1,0 +1,188 @@
+ Binary Search Tree:
+      
+	      50
+	   /     \
+	  30      70
+	 /  \    /  \
+       20   40  60   80 
+50=Ra,30=Shu,70=Geb,20=Osiris,40=Nephyths,60=Isis,80=Seti
+
+struct node
+{
+  int key;
+  struct node *right,*left;
+};
+int count=0;
+void insert(struct node *root,int item)
+{
+    int *ptr,*ptrV,*newP,flag=0;
+        ptr=root;  
+         while(ptr!=NULL && flag==0)
+         {
+          
+            if(ptr->key>item)
+           {
+              ptrV=ptr;
+              ptr=ptr->left;
+           }
+          else if(ptr->key<item)
+           {
+             ptrV=ptr;
+             ptr=ptr->rigth;
+           }
+           else
+           {flag=1; printf("Item(%d) exists ",item); }
+        }
+    if(ptr==NULL)
+     {
+      newP=(struct node *) malloc(sizeof(struct node));
+      newP->key=item;
+      newP->left=NULL; newP->right=NULL;
+       if(ptrV->key < item)
+         ptrV->right=newP;
+       else
+         ptrV->left=newP;
+      }
+  }
+void inorder(struct node *root)
+{
+   if(root!=NULL)
+   {
+     inorder(root->left);  printf(" %d\n ",root->key); inorder(root->right); 
+   }
+}
+void preorder(struct node *root)
+{
+   if(root!=NULL)
+   {
+     printf(" %d\n ",root->key); preorder(root->left);  preorder(root->right); 
+   }
+}
+void postorder(struct node *root)
+{
+  if(root!=NULL)
+  { postorder(root->left); postorder(root->right); printf("%d\n",root->key); }
+}
+int totalNode(struct node *root)
+{
+  if(root==NULL)
+   return count;
+ 
+    count++; 
+    totalNode(root->left); 
+    totalNode(root->right);
+}
+int internalnodes(struct node *root)
+{
+   if(root==NULL || (root->left==NULL && root->right==NULL))
+    return 0;
+   else
+    return (internalnodes(root->left)  + internalnodes(root->right) + 1);
+}
+int externalnodes(struct node *root)
+{
+  if(root==NULL)
+   return 0;
+  else if(root->left==NULL && root->right==NULL)
+   return 1;
+  else
+   return ( externalnodes(root->left) + externalnodes(root->right));
+}
+void searchItem(struct node *root,int item)
+{
+   int *ptr;
+       ptr=root;
+       
+        if(ptr!=NULL)
+         {
+           if(ptr->key>item)
+            searchItem(ptr->left,item);
+           else if(ptr->key<item)
+             searchItem(ptr->right,item);
+           else
+             printf("Item found ");
+         }
+       else
+        { printf("Item does not exist"); }
+ }
+A java program for serialization-deserialization
+import java.io.*;
+class Student implements Serializable
+{
+   private int rno;
+   private String fname,lname,cour,sem;
+  
+  public Student()
+  {
+  } 
+  public Student(int p1,String fnm,String lnm,String p2,String p3)
+  {
+     this.rno=p1;
+     this.fname=fnm;
+     this.lname=lnm;
+     this.cour=p2;
+     this.sem=p3;
+  }
+  public getDetails()
+  { System.out.println("Student details : \n" + rno + ":" + fname + ":" + lname + ":" + cour + ":" + sem);}
+ }
+class Operation
+{
+  int cnt;
+   public Operation()
+   { cnt++; }
+  
+  public void Serialize()
+   {
+     try
+     {  
+       Student s = new Student(11,"aaa","bb","MCA","III");
+       FileOutputStream fout = new FileOutputStream("abc.txt");
+       ObjectOutputStream oos = new ObjectOutpuStream(fout);
+       oos.writeObject(s);
+       oos.close();
+       fout.close();       
+     }
+     catch(Exception e)
+     { e.printStackTrace(); }
+  }
+ public void DeSerialize();
+  {
+    try{
+     FileInputStream fin = new FileInputStream("abc.txt");
+     ObjectInputStream oin = new ObjectInputStream(fin);
+     
+	st=(Student)oin.readObject();
+       System.out.println(s);
+       st.getDetails();  oin.close(); fin.close();
+     }
+   catch(Exception e)
+    {
+      e.printStackTrace();
+    }
+  }
+}
+public class StudentInfo
+{
+  public static void main(String[] args)
+ {
+   Operation opr = new Operation();
+   opr.Serialize(); opr.DeSerialize();
+ }
+}
+
+
+1.)Harald I Fairhair (893-933)-103yrs 
+2.)Eric I (933-943)-60 yrs
+3.)Haakon I (943-961)-56yrs
+4.)Harald II Greycloak (961-971)-53yrs
+5.)Haakon II Sigurdson (971-997)-75yrs
+6.)Olaf I tryygaveson (997-1010)-60yrs
+7.)Swein (1010-1013)-59yrs 
+8.)Kanute (1013-1027)-41yrs
+9.)Olaf II (1027- 1041)-47yrs
+10.)Magnus I (1041-1047)-27yrs
+11.)Harald III (1047-1065)-52yrs
+12.)Magnus II (1065-1070)-27yrs
+13.)Olaf III (1070-1095)-50yrs
+14.)Magnus I
