@@ -1,0 +1,7 @@
+Git Commands
+1.)  git config -> Configuring the git user
+2.) git init -> Initialize the repository.
+3.) git add, git add -A -> Adding files to commit.
+4.) git commit,git commit -m "Arg." -> Commiting files to repository.
+5.) git status -> Checking status of repository.
+6.) git log
