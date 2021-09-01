@@ -4,4 +4,7 @@ Git Commands
 3.) git add, git add -A -> Adding files to commit.
 4.) git commit,git commit -m "Arg." -> Commiting files to repository.
 5.) git status -> Checking status of repository.
-6.) git log
+6.) git log	   7.) touch .ignore ->Creating a git ignore file
+8.) git branch -> Creating a git branch.
+ 9.)git checkout -> switching between branches of repository.
+10.) git merge -> Merging one branch into another branch.
